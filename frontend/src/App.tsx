@@ -39,14 +39,14 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col">
       {/* Header */}
-      <header className="bg-gradient-to-r from-yellow-600 to-red-700 py-4 px-6 shadow-lg">
+      {/* <header className="bg-gradient-to-r from-yellow-600 to-red-700 py-4 px-6 shadow-lg">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <Mic2 className="w-6 h-6 text-yellow-300 mr-2" />
             <h1 className="text-xl font-bold">{STRINGS.appTitle}</h1>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Main content */}
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center gap-10">

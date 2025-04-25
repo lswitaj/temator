@@ -1,4 +1,5 @@
 import React from 'react';
+import { STRINGS } from '../strings';
 
 interface BannerAreaProps {
   imageUrl?: string;
@@ -13,12 +14,12 @@ const BannerArea: React.FC<BannerAreaProps> = ({ imageUrl }) => {
       <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/70 to-red-900/70 z-10"></div>
       <img 
         src={imageUrl || defaultBanner} 
-        alt="Freestyle Battle Banner" 
+        alt="Freestyle Temator WBW Banner" 
         className="w-full h-full object-cover object-center"
       />
       <div className="absolute inset-0 flex items-center justify-center z-20">
         <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-bold tracking-tight">
-          Freestyle Battle
+          {STRINGS.banner.title}
         </h1>
       </div>
     </div>

@@ -1,12 +1,29 @@
 export const STRINGS = {
-    appTitle: "Freestyle Battle",
-    durationLabel: "Duration (seconds):",
-    errorTitle: "Error:",
-    errorFallback: "Using fallback topic. Please try again later.",
-    instructionsTitle: "How It Works",
+    appTitle: "Freestyle temator",
+    durationLabel: "Czas (sekundy):",
+    errorTitle: "Błąd:",
+    errorFallback: "Błąd, spróbuj później.",
+    instructionsTitle: "Jak to działa:",
     instructions: [
-      "Set your preferred duration for topic switches",
-      "Click the refresh button to get a new topic instantly",
-      "Pause the timer if you need more time on a topic",
+      "Ustaw czas pojedynczego wejścia",
+      "Kliknij przycisk żeby zmienić temat od ręki",
+      "Zatrzymaj czas gdy potrzebujesz",
     ],
+    timer: {
+      timeLeftLabel: "Pozostały czas:",
+      resumeButton: "Start",
+      pauseButton: "Stop",
+    },
+    footer: {
+      copyright: "Freestyle Temator by WBW © 2025",
+      githubLabel: "GitHub",
+      musicLabel: "Music",
+    },
+    banner: {
+      title: "Freestyle Temator by WBW",
+    },
+    topicDisplay: {
+      topicLabel: "Temat:",
+      topicSubtext: "Nawiń najlepsze wersy!",
+    },
   };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RefreshCw } from 'lucide-react';
+import { STRINGS } from '../strings';
 
 interface TopicDisplayProps {
   topic: string;
@@ -32,8 +33,7 @@ const TopicDisplay: React.FC<TopicDisplayProps> = ({ topic, isLoading, onRefresh
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
-      <h2 className="text-xl text-red-400 font-mono uppercase tracking-widest mb-4">Current Topic</h2>
-      
+      <h2 className="text-xl text-red-400 font-mono uppercase tracking-widest mb-4">{STRINGS.topicDisplay.topicLabel}</h2>
       <div className="bg-gray-800 rounded-xl p-8 w-full min-h-[200px] flex flex-col items-center justify-center relative">
         {isLoading ? (
           <div className="animate-pulse flex items-center justify-center">
@@ -49,7 +49,7 @@ const TopicDisplay: React.FC<TopicDisplayProps> = ({ topic, isLoading, onRefresh
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
               {displayTopic}
             </h1>
-            <p className="text-yellow-300 text-lg">Spit your best bars on this topic!</p>
+            <p className="text-yellow-300 text-lg">{STRINGS.topicDisplay.topicSubtext}</p>
           </div>
         )}
         
