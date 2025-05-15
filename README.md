@@ -1,3 +1,6 @@
+#TODO: Readme update - docker and not existing db
+#TODO: add challanges, e.g. rewriting git history
+
 # Temator 🎤
 
 **Temator** is a minimal freestyle topic generator built for the WBW community and freestyle MCs. It serves randomized battle topics from a predefined database via a simple REST API and a modern React-based frontend.
