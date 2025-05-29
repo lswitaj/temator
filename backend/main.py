@@ -1,9 +1,11 @@
 from fastapi import FastAPI
+from fastapi import HTTPException
 from fastapi.responses import JSONResponse
 import os
 import random
 import json
 from fastapi.middleware.cors import CORSMiddleware
+import psycopg2
 
 app = FastAPI()
 
@@ -15,13 +17,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def main():
-    return {"message": "Hello World"}
-
 @app.get("/health")
 async def health():
-    return {"status": "ok"}
+    conn = None
+    try:
+        conn = psycopg2.connect("postgresql://postgres:postgres@db:5432/temator")
+        cursor = conn.cursor()
+        cursor.execute("SELECT 1;")
+        result = cursor.fetchone()  # Get the actual result
+        cursor.close()
+        conn.close()
+        return {"status": "ok", "db_ready": True}
+    except Exception as e:
+        raise HTTPException(status_code=503, detail=f"Database error: {str(e)}")
+    finally:
+        if conn:
+            cursor.close()
+            conn.close()
 
 @app.get("/topic")
 async def gettopic():
