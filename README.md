@@ -1,6 +1,6 @@
 # Temator 🎤
 
-**Temator** is a minimal freestyle topic generator built for the WBW community and freestyle MCs. It serves randomized battle topics from a predefined database via a simple REST API and a modern React-based frontend.
+**Temator** is a freestyle topic generator built for the WBW community and freestyle MCs. It serves randomized battle topics from a predefined database via a simple REST API and a modern React-based frontend.
 
 ---
 
@@ -23,6 +23,30 @@
 - **Build Tool**: Vite
 - **Package Manager**: npm
 - **Containerization**: Docker & Docker Compose
+
+## 📊 System Architecture
+
+```mermaid
+graph LR
+    subgraph Frontend
+        FE[React App<br/>Vite + TailwindCSS]
+    end
+
+    subgraph Backend
+        BE[FastAPI<br/>Python]
+    end
+
+    subgraph Database
+        DB[(PostgreSQL)]
+    end
+
+    FE -->|HTTP/API Calls| BE
+    BE -->|CRUD Operations| DB
+
+    style FE fill:#61dafb,stroke:#333,stroke-width:2px
+    style BE fill:#009688,stroke:#333,stroke-width:2px
+    style DB fill:#336791,stroke:#333,stroke-width:2px
+```
 
 ---
 
@@ -97,8 +121,13 @@ docker compose down
 ## 📚 API Documentation
 
 FastAPI provides interactive documentation at:  
-➡️ Swagger UI: `http://127.0.0.1:8000/docs`  
-➡️ ReDoc: `http://127.0.0.1:8000/redoc`
+➡️ Swagger UI: `http://localhost:8000/docs`  
+➡️ ReDoc: `http://localhost:8000/redoc`
+
+### Available Endpoints
+
+- `GET /health` - Health check endpoint
+- `GET /topic` - Get a random topic
 
 ---
 
@@ -106,7 +135,7 @@ FastAPI provides interactive documentation at:
 
 ### Fetch a Random Topic
 ```bash
-curl http://127.0.0.1:8000/topic
+curl http://localhost:8000/topic
 ```
 
 Response:
@@ -139,16 +168,12 @@ Response:
 temator/
 ├── backend/          # Backend folder
 │   ├── main.py       # FastAPI app entry point
-│   ├── database.py   # DB setup and connection
-│   ├── models.py     # SQLAlchemy models
-│   ├── crud.py       # Data access layer
-│   ├── data/         # Folder with initial topics (e.g., topics.json or CSV)
 │   └── requirements.txt  # Python dependencies
-├── frontend/     # Frontend folder
+├── frontend/         # Frontend folder
 │   ├── src/          # React source files
 │   ├── index.css     # TailwindCSS styles
-│   ├── App.tsx       # Main React component
 │   └── package.json  # Frontend dependencies
+├── docker-compose.yml # Docker Compose configuration
 └── README.md         # Project documentation
 ```
 

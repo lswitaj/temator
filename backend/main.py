@@ -45,10 +45,3 @@ async def gettopic():
             return JSONResponse(randomTopic)
     except Exception as e:
         return {"error": str(e)}
-
-#TODO: add requirements.txt
-#TODO: add dockerfile
-#TODO: add deployment instructions
-#TODO: add CI/CD pipeline
-#TODO: add tests
-#TODO: add documentation
