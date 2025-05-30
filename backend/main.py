@@ -5,7 +5,7 @@ import os
 import random
 import json
 from fastapi.middleware.cors import CORSMiddleware
-import psycopg2
+import asyncpg
 
 app = FastAPI()
 
@@ -21,22 +21,18 @@ app.add_middleware(
 async def health():
     conn = None
     try:
-        conn = psycopg2.connect("postgresql://postgres:postgres@db:5432/temator")
-        cursor = conn.cursor()
-        cursor.execute("SELECT 1;")
-        result = cursor.fetchone()  # Get the actual result
-        cursor.close()
-        conn.close()
+        conn = await asyncpg.connect("postgresql://postgres:postgres@db:5432/temator")
+        await conn.execute("SELECT 1;")
         return {"status": "ok", "db_ready": True}
     except Exception as e:
         raise HTTPException(status_code=503, detail=f"Database error: {str(e)}")
     finally:
         if conn:
-            cursor.close()
-            conn.close()
+            await conn.close()
 
 @app.get("/topic")
 async def gettopic():
+    conn = None
     try:
         file_path = os.path.join(os.path.dirname(__file__), 'topics.json')
         with open(file_path, 'r') as file:
@@ -45,3 +41,14 @@ async def gettopic():
             return JSONResponse(randomTopic)
     except Exception as e:
         return {"error": str(e)}
+    finally:
+        if conn:
+            cursor.close()
+            conn.close()
+    
+# TODO: add error handling for the database connection
+# TODO: 503 for database connection errors
+# TODO: 404 for empty result set
+# TODO: make sure the query is safe - sql injection
+# TODO: add logging
+# TODO: Display user-friendly error messages
